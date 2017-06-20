@@ -1,32 +1,33 @@
 package com.kd.example.spring.dao;
 
-import java.util.Set;
-import java.util.TreeSet;
-
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kd.example.spring.model.Account;
-import com.kd.example.spring.model.Role;
 
 @Service
 public class AccountDao {
     @Autowired
-    StandardPasswordEncoder passwordEncoder;
+    SessionFactory sessionFactory;
 
     public Account loadUserByUsername(String username) {
-        Account account = new Account();
-        account.setAccountNonExpired(true);
-        account.setAccountNonLocked(true);
-        account.setCredentialsNonExpired(true);
-        account.setEnabled(true);
-        account.setUsername("kuldeep");
-        account.setPassword(passwordEncoder.encode("kuldeep"));
-        Set<Role> roles = new TreeSet<>();
-        roles.add(new Role("Admin"));
-        account.setRoles(roles);
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        Account account = (Account) session.get(Account.class, 1);
+        tx.commit();
+        session.close();
         return account;
+    }
+
+    public void save(Account account) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.save(account);
+        tx.commit();
+        session.close();
     }
 
 }

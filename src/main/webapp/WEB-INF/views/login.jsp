@@ -22,6 +22,8 @@
 			</tbody>
 		</table>
 	</form>
-
+	<h3>
+		Not registered, click <a href="signup">here</a>.
+	</h3>
 </body>
 </html>

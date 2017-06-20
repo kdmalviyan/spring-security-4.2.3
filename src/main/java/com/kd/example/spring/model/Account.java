@@ -3,17 +3,31 @@ package com.kd.example.spring.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+@Entity
+@Table(name = "ACCOUNT_DETAILS")
 public class Account implements UserDetails {
     private static final long serialVersionUID = 1661942653332300687L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String password;
     private String username;
-    private Set<Role> roles;
+    @Transient
+    private List<Role> roles;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
@@ -35,11 +49,12 @@ public class Account implements UserDetails {
         this.username = username;
     }
 
-    public Set<Role> getRoles() {
+    @OneToMany(fetch = FetchType.EAGER)
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 

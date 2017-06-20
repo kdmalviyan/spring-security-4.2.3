@@ -10,14 +10,35 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<spring.framework.security.version>4.2.3.RELEASE</spring.framework.security.version>
 		<spring.framework.version>4.3.9.RELEASE</spring.framework.version>
-		<hibernate.version>5.2.10.Final</hibernate.version>
+		<hibernate.version>4.3.6.Final</hibernate.version>
 	</properties>
 	<dependencies>
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.2.10.Final</version>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.32</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.18.2-GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-dbcp</artifactId>
+			<version>7.0.40</version>
 		</dependency>
 		<!-- Spring -->
 		<dependency>

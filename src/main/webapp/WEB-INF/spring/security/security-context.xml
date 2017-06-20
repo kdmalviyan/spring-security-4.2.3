@@ -12,6 +12,8 @@
 			access="hasRole('ROLE_ANONYMOUS')" />
 		<security:intercept-url pattern="/login**"
 			access="permitAll" />
+		<security:intercept-url pattern="/signup**"
+			access="permitAll" />
 		<security:intercept-url pattern="/resources**"
 			access="permitAll" />
 		<security:intercept-url pattern="/**"
